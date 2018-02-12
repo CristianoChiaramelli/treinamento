@@ -3,7 +3,7 @@ import { Alert, View, Text, TouchableOpacity, TextInput, StyleSheet } from 'reac
 import { connect } from 'react-redux';
 import * as actions from './actions';
 
-const LOCAL_LOGIN_URL = 'http://192.168.0.15:1337';
+const LOCAL_LOGIN_URL = 'http://192.168.0.26:1337';
 const UPDATE_USER_URL = LOCAL_LOGIN_URL+'/updateuser';
 
 class InfoItem extends Component {

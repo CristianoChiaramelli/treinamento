@@ -5,7 +5,7 @@ import * as actions from './actions';
 import addButtonImage from '../assets/add-button-hi.png';
 import ShoppingCart from './ShoppingCart';
 
-const CART_URL = 'http://192.168.0.15:1337/cartList/';
+const CART_URL = 'http://192.168.0.26:1337/cartList/';
 
 class SingleItem extends Component {
 

@@ -5,10 +5,11 @@ import { Provider } from 'react-redux';
 import ReduxPromise from 'redux-promise';
 import Login from './src/Login';
 import { Root } from './src/Router';
-import reducers from './src/reducers/AppReducer';
+import productsReducer from './src/reducers/ProductsReducer';
+import userInfoReducer from './src/reducers/UserInfoReducer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const store = createStoreWithMiddleware(reducers);
+const store = createStoreWithMiddleware(productsReducer, userInfoReducer);
 
 class App extends React.Component {
 

@@ -15,7 +15,7 @@ module.exports = {
 				console.log('Error', err);
 				res.send(400);
 			} else {
-				const raw = queryRes.rows
+				const raw = queryRes;
 
 				console.log(raw);
 

@@ -1,10 +1,5 @@
 import { AsyncStorage } from 'react-native';
-
-
-const LOCAL_LOGIN_URL = 'http://192.168.0.15:1337';
-const PRODUCTS_URL = LOCAL_LOGIN_URL+'/productsList';
-const CART_URL = LOCAL_LOGIN_URL+'/cartList';
-
+import { PRODUCTS_URL } from './globals';
 
 export const setLogged = (value) => {
 	return {

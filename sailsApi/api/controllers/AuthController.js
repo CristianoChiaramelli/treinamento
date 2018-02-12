@@ -4,7 +4,7 @@ module.exports = {
 
 		const email = req.body.email;
 		const password = req.body.password;
-		const myQuery = `SELECT * FROM USERS WHERE USERS.EMAIL='${email}' AND USERS.PASSWORD='${password}';`;
+		const myQuery = `SELECT * FROM users WHERE users.EMAIL='${email}' AND users.PASSWORD='${password}';`;
 		
 		console.log(myQuery);
 
@@ -13,7 +13,7 @@ module.exports = {
 				console.log('Error', err);
 				res.send(400);
 			} else {
-				const userRaw = queryRes.rows[0];
+				const userRaw = queryRes[0];
 
 				if (userRaw){
 					const userInfo = {

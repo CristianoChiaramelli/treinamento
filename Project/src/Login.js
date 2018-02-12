@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import { Alert, View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import { Provider, connect } from 'react-redux';
+import { FetchLogin } from './fetches';
 import * as actions from './actions';
-import * as Alerts from './alerts';
+import { WrongPasswordAlert, DefaultError } from './alerts';
 
-const LOCAL_LOGIN_URL = 'http://192.168.0.15:1337';
-const AUTH_URL = LOCAL_LOGIN_URL+'/auth';
+
+const loginAttempt = () => {
+  const ans = FetchLogin(email, password);
+  if (!ans){
+    WrongPasswordAlert();
+  } else if (ans.err){
+    DefaultError(ans.err);
+  } else {
+    //Successful
+    console.log("Successful");
+  }
+}
 
 class Login extends Component {
 
@@ -21,45 +32,6 @@ class Login extends Component {
     this.setState({password: text});
   }
 
-  loginAttempt(){
-
-    fetch(AUTH_URL, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-      })
-    }).then((response) => response.json())
-      .then((responseJson) => {
-
-        if (responseJson.err){
-          console.log('Erro no login', responseJson.err);
-          Alerts.DefaultError();
-        } else if(!responseJson.name){
-          console.log('Usuario nao encontrado');
-
-          Alerts.WrongPasswordAlert();
-
-        } else {
-          const user = {
-            id: responseJson.id,
-            name: responseJson.name,
-            email: this.state.email,
-          }
-          this.props.setLogged(user);
-          this.props.navigation.navigate('InsidePage');
-        }
-    })
-    .catch((err) => {
-      console.log('ERROR ON LOGIN', err);
-      Alerts.DefaultError();
-    })
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -73,7 +45,7 @@ class Login extends Component {
            onChangeText = {this.handlePassword}
            secureTextEntry={true}/>
 
-        <TouchableOpacity style = {styles.submitButton} onPress = {() => this.loginAttempt()} >
+        <TouchableOpacity style = {styles.submitButton} onPress = {loginAttempt} >
           <Text style = {styles.submitText}>Login</Text>
         </TouchableOpacity>
       </View>

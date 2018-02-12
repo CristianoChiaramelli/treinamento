@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Alert, View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import { Alert } from 'react-native'
 
 export const WrongPasswordAlert = () => {
     Alert.alert(
@@ -11,11 +10,11 @@ export const WrongPasswordAlert = () => {
 	)
 }
 
-export const DefaultError = (err=400) => {
+export const DefaultError = (err='Erro 400') => {
 
 	Alert.alert(
 	    'Algo deu errado',
-	    'Erro '+err,
+	    err,
 	    [
 	      {text: 'OK', onPress: () => console.log('OK Pressed')},
 	    ]

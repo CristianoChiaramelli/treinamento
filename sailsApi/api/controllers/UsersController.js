@@ -6,7 +6,4 @@
  */
 
 module.exports = {
-	users: function(req, res){
-		res.json([1,2])
-	}
 };

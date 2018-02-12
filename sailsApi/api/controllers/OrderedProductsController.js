@@ -17,7 +17,7 @@ module.exports = {
 				console.log('Error', err);
 				res.send(400);
 			} else {
-				const raw = queryRes.rows
+				const raw = queryRes
 
 				console.log(raw);
 
@@ -33,7 +33,7 @@ module.exports = {
 		const myQuery = `INSERT INTO orderedproducts VALUES (${userid}, ${productid}, ${quantity});`;
 		
 		OrderedProducts.query(myQuery, (err, queryRes) => {
-			const userRaw = queryRes.rows[0];
+			const userRaw = queryRes[0];
 
 			if (err){
 				console.log('Error', err);
